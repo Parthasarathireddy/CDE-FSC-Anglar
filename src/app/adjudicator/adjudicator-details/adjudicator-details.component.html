@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-md-offset-3 align-center">
+        <h1><strong text-success>{{member.patientName}} Patient Details</strong></h1>
+      </div>
+      <div class="row justify-content-center">
+        <div class="form-group col-md-4 col-md-offset-4 align-center">
+          <label for="email">Email address: </label>
+          <span>{{member.emailId}}</span>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="form-group col-md-4 col-md-offset-4 align-center">
+          <label for="patientName">Patient Name: </label>
+          <span>{{member.patientName}}</span>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="form-group col-md-4 col-md-offset-4 align-center">
+          <label for="meritalStatus">Merital Status: </label>
+          <span>{{member.meritalStatus}}</span>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="form-group col-md-4 col-md-offset-4 align-center">
+          <label for="phoneNo">Phone Number: </label>
+          <span>{{member.phoneNo}}</span>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="form-group col-md-4 col-md-offset-4 align-center">
+            <button class="btn btn-primary" (click)=approve(member.emailId)> Approve </button> |
+            <button class="btn btn-danger" (click)=reject(member.emailId)> Reject </button>
+        </div>
+      </div>
+  </div>

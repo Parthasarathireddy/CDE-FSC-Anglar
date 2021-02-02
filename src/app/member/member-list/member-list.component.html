@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-info  pull-right" [routerLink]="['./addMember']">Add Member</button>
+        </div>
+    </div>
+    <div class="py-5">
+        <div class="container">
+            <div class="row hidden-md-up">
+                <div class="col-md-4" *ngFor="let el of members">
+                    <div class="card memberList">
+                        <div class="card-block">
+                            <div class="card-title text-primary">{{el.patientName | uppercase}}</div>
+                            <div>
+                                <label for="email">Email:</label> <span class="card-subtitle text-muted">{{el.emailId}}</span>
+                            </div>
+                            <div>
+                                <label for="email"> Phone : </label><span class="card-text p-y-1">{{el.phoneNo}}</span>
+                            </div>
+                            <div>
+                                <label for="email"> Status : </label> <span class="card-text p-y-1">{{el.status}}</span>
+                            </div>
+                            <div *ngIf = "el.status !== 'Approved'">
+                            <a href="#" class="btn btn-primary" [routerLink]="['../memberlist', el.emailId]"
+                                (click)="memberByEmailId(el.emailId)">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-4 col-md-offset-4 align-center">
+      <h1><strong text-success>Claim Submit</strong></h1>
+    </div>
+    <form #memberform="ngForm" (ngSubmit)="memberUser()">
+      <span class="text-danger">{{message}}</span>
+      <div class="row justify-content-center">
+        <div class="form-group col-md-4 col-md-offset-4 align-center">
+          <label for="email">Email address:</label>
+          <input type="email" class="form-control" placeholder="Enter Email" id="email" name="email"
+            [(ngModel)]="member.emailId" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel">
+          <div *ngIf="email.errors && email.invalid && email.touched">
+            <small class="text-danger" *ngIf="email.errors.required"> Email is required</small>
+            <small class="text-danger" *ngIf="email.errors.pattern">Please provide a valid email address</small>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="form-group col-md-4 col-md-offset-4 align-center">
+          <label for="patientname">Patient Name:</label>
+          <input type="text" class="form-control" placeholder="Enter Patient Name" id="patientname" name="patientname"
+            [(ngModel)]="member.patientName" required #patientname="ngModel">
+          <div *ngIf="patientname.errors && patientname.invalid && patientname.touched">
+            <small class="text-danger" *ngIf="patientname.errors.required"> Patient name is required</small>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="form-group col-md-4 col-md-offset-4 align-center">
+          <label for="phoneno">Phone No:</label>
+          <input type="phone" class="form-control" placeholder="Enter Phone Numer" id="phoneno" name="phoneno"
+            [(ngModel)]="member.phoneNo" required #phoneno="ngModel" pattern="^((\\+91-?)|0)?[0-9]{10}$">
+          <div *ngIf="phoneno.errors && phoneno.invalid && phoneno.touched">
+            <small class="text-danger" *ngIf="phoneno.errors.required"> phone number is required</small>
+            <small class="text-danger" *ngIf="phoneno.errors.pattern"> Please, Enter 10 digit Mobile Number</small>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="form-group col-md-4 col-md-offset-4 align-center">
+          <label for="phoneno">Merital Status:</label>
+          <select class="form-control" id="meritalstatus" [(ngModel)]="member.meritalStatus" name="meritalstatus"
+            required>
+            <option *ngFor="let item of meritalStatus" [value]="item.value" [selected]="item.isSelected">{{item.key}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="form-group col-md-4 col-md-offset-4 align-center">
+          <label class="control-label" for="Country">Country:</label>
+          <select name="countires" [(ngModel)]="member.country" (change)="onSelectCountry($event.target.value)"
+            class="form-control input-lg" id="country">
+            <option value="0">Select Country</option>
+            <option *ngFor="let country of statesAndCountries" value={{country.name}}>{{country.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="form-group col-md-4 col-md-offset-4 align-center">
+          <label class="control-label" for="States">State:</label>
+          <select name="states" [(ngModel)]="member.state"
+            class="form-control input-lg" id="state">
+            <option value="0">Select State</option>
+            <option *ngFor="let el of states" value={{el}}>{{el}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="form-group col-md-4 col-md-offset-4 align-center">
+          <button type="submit" [disabled]="memberform.form.invalid" class="btn btn-success">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>

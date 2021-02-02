@@ -1,0 +1,19 @@
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th *ngFor="let head of headers" scope="col">{{head}} </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr mdbTableCol *ngFor="let el of members">
+                <th scope="row">{{el.id}}</th>
+                <td><a [routerLink]="['../adjudicator', el.emailId]" (click)="memberByEmailId(el.emailId)">{{el.emailId}}</a></td>
+                <td>{{el.patientName}}</td>
+                <td>{{el.meritalStatus}}</td>
+                <td>{{el.phoneNo}}</td>
+                <td>{{el.status}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
