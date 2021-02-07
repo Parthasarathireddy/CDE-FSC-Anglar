@@ -15,37 +15,21 @@ export class MemberComponent implements OnInit {
   member = new Member();
   message = '';
   coutries = [];
+  fileToUpload: any;
 
   statesAndCountries = [{
-    name: "INDIA", states: ["KARNATAKA", "TELENGANA", "ANDHRAPRADESH"]
+    name: "India", states: ["Karnataka", "Telangana", "Andhra Pradesh"]
   },
   {
-    name: "USA", states: ["CALIFORNIA", "FLORIDA", "INDIAPOLIS"],
-  }]
-  countiesee = [{
-    "INDIA": {
-      "KARNATAKA": ["BANGALORE", "UDUPI", "MANGALORE"],
-      "TELENGANA": ["HYDERABAD", "WARANGAL"],
-      "ANDHRAPRADESH": ["VIJAYAWADA", "KURNOOL"]
-    },
-    "USA": {
-      "CALIFORNIA": ["SAN JOSE", "SAN HOSE", "NEW YORK"],
-      "FLORIDA": ["MIAMI", "DENVER"],
-      "INDIAPOLIS": ["INDIANA", "MASACHUTTEUS"]
-    },
-    "AUSTRALIA": {
-      "NEW SOUTH WALES": ["SYDNEY", "BRISBANE"],
-      "QUEENSLAND": ["PERTH", "VICTORIA"],
-      "WESTERN AUSTRALIA": ["MELBOURNE", "MCG"]
-    }
+    name: "USA", states: ["California", "Florida", "Indiapolis"],
   }]
   meritalStatus = [
     { key: 'Married', value: 'Married', isSelected: true },
     { key: 'Single', value: 'Single', isSelected: false }
   ];
-  states:Array<any>;
+  states: Array<any>;
   constructor(private _registrationService: RegistrationService, private _router: Router, private route: ActivatedRoute) {
-   }
+  }
 
   ngOnInit(): void {
     this.route.params.pipe(map(p => p.emailId), switchMap(emailId => {
@@ -62,9 +46,10 @@ export class MemberComponent implements OnInit {
   }
   memberUser() {
     this.member.submittedUser = this._registrationService.username;
-    this.member.status = "Pending";
+    this.member.status = "Review In-Progress";
     this._registrationService.memberUserFromRemote(this.member).subscribe(
       data => {
+       this.member.imageSrc = 'data:image/jpeg;base64,'  + data.imageSrc;
         this._router.navigate(['./memberlist'])
         console.log("response received")
         this.message = "Submitted Successfully!";
@@ -75,6 +60,7 @@ export class MemberComponent implements OnInit {
       }
     )
   }
+
   onSelectCountry(count) {
     this.states = this.statesAndCountries.find(con => con.name === count).states;
   }

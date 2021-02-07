@@ -29,9 +29,12 @@ export class RegistrationComponent implements OnInit {
   currentDate:Date = new Date();
 
   //currentDate = new Date().getDate();
-  constructor(private _registrationService: RegistrationService, private _router : Router) { }
-
+  constructor(private _registrationService: RegistrationService, private _router : Router) { 
+    this.maxDate.setDate(this.maxDate.getDate() + 1);
+  }
+  maxDate = new Date();
   ngOnInit(): void {
+    this.maxDate = new Date();
   }
   registerUser(){
     this._registrationService.registerUserFromRemote(this.user).subscribe(

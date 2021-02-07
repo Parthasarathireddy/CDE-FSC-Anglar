@@ -20,9 +20,10 @@
       <div class="form-group col-md-4 col-md-offset-4 align-center">
         <label for="userName">User Name:</label>
         <input type="text" class="form-control" placeholder="Enter User Name" id="username" name="username"
-          [(ngModel)]="user.userName" required #username="ngModel">
+          [(ngModel)]="user.userName" required pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$" #username="ngModel">
         <div *ngIf="username.errors && username.invalid && username.touched">
           <small class="text-danger" *ngIf="username.errors.required"> User name is required</small>
+          <small class="text-danger" *ngIf="username.errors.pattern">Only Alphabets and spaces allowed</small>
         </div>
       </div>
     </div>
@@ -120,7 +121,7 @@
       <div class="form-group col-md-4 col-md-offset-4 align-center">
         <label for="dob">DOB:</label>
         <input type="date" class="form-control" data-date-format="mm/dd/yyyy" id="dob" name="dob"
-        [(ngModel)]="user.dob" required #dob="ngModel">
+        [(ngModel)]="user.dob" required #dob="ngModel" max = "{{maxDate | date:'yyyy-MM-dd'}}">
       <div *ngIf="dob.errors && dob.invalid && dob.touched">
         <small class="text-danger" *ngIf="dob.errors.required"> Date of Birth is required</small>
       </div>
@@ -130,7 +131,7 @@
       <div class="form-group col-md-4 col-md-offset-4 align-center">
         <label for="rdate">Registration Date:</label>
         <input type="date" class="form-control" data-date-format="mm/dd/yyyy" id="rdate" name="rdate"
-        [(ngModel)]="user.regDate" required #rdate="ngModel">
+        [(ngModel)]="user.regDate" required #rdate="ngModel" max = "{{maxDate | date:'yyyy-MM-dd'}}" min = "{{maxDate | date:'yyyy-MM-dd'}}">
       <div *ngIf="rdate.errors && rdate.invalid && rdate.touched">
         <small class="text-danger" *ngIf="rdate.errors.required"> Registation Date is required</small>
       </div>

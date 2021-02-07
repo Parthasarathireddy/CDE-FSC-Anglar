@@ -20,9 +20,10 @@
         <div class="form-group col-md-4 col-md-offset-4 align-center">
           <label for="patientname">Patient Name:</label>
           <input type="text" class="form-control" placeholder="Enter Patient Name" id="patientname" name="patientname"
-            [(ngModel)]="member.patientName" required #patientname="ngModel">
+            [(ngModel)]="member.patientName" required pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$" #patientname="ngModel">
           <div *ngIf="patientname.errors && patientname.invalid && patientname.touched">
             <small class="text-danger" *ngIf="patientname.errors.required"> Patient name is required</small>
+            <small class="text-danger" *ngIf="patientname.errors.pattern"> Only  alowed alphabets and spaces</small>
           </div>
         </div>
       </div>
@@ -51,8 +52,7 @@
         <div class="form-group col-md-4 col-md-offset-4 align-center">
           <label class="control-label" for="Country">Country:</label>
           <select name="countires" [(ngModel)]="member.country" (change)="onSelectCountry($event.target.value)"
-            class="form-control input-lg" id="country">
-            <option value="0">Select Country</option>
+            class="form-control input-lg" id="country" required>
             <option *ngFor="let country of statesAndCountries" value={{country.name}}>{{country.name}}</option>
           </select>
         </div>
@@ -61,10 +61,31 @@
         <div class="form-group col-md-4 col-md-offset-4 align-center">
           <label class="control-label" for="States">State:</label>
           <select name="states" [(ngModel)]="member.state"
-            class="form-control input-lg" id="state">
-            <option value="0">Select State</option>
+            class="form-control input-lg" id="state" required>
             <option *ngFor="let el of states" value={{el}}>{{el}}</option>
           </select>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="form-group col-md-4 col-md-offset-4 align-center">
+          <label for="panno">PAN No:</label>
+          <input type="text" class="form-control" placeholder="Enter Pan number" id="panno" name="panno"
+            [(ngModel)]="member.panNo" required pattern="[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}" #panno="ngModel">
+          <div *ngIf="panno.errors && panno.invalid && panno.touched">
+            <small class="text-danger" *ngIf="panno.errors.required"> PAN Number is required</small>
+            <small class="text-danger" *ngIf="panno.errors.pattern"> Invalid PAN Number</small>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="form-group col-md-4 col-md-offset-4 align-center">
+          <label for="hospitalname">Hospital Name:</label>
+          <input type="text" class="form-control" placeholder="Enter Patient Name" id="patientname" name="hospitalname"
+            [(ngModel)]="member.hospitalName" required pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$" #hospitalname="ngModel">
+          <div *ngIf="hospitalname.errors && hospitalname.invalid && hospitalname.touched">
+            <small class="text-danger" *ngIf="hospitalname.errors.required">Hospital name is required</small>
+            <small class="text-danger" *ngIf="hospitalname.errors.pattern">Only Alphabets and spaces allowed</small>
+          </div>
         </div>
       </div>
       <div class="row justify-content-center">

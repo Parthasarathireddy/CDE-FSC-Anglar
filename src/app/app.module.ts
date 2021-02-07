@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +11,7 @@ import { MemberComponent } from './member/member.component';
 import { AdjudicatorComponent } from './adjudicator/adjudicator.component';
 import { MemberListComponent } from './member/member-list/member-list.component';
 import { AdjudicatorDetailsComponent } from './adjudicator/adjudicator-details/adjudicator-details.component';
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,12 @@ import { AdjudicatorDetailsComponent } from './adjudicator/adjudicator-details/a
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

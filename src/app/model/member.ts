@@ -9,4 +9,7 @@ export class Member {
     country: String;
     state: String;
     city:String;
+    panNo : String;
+    hospitalName : String;
+    imageSrc: any;
 }

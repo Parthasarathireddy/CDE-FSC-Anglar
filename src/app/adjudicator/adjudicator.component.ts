@@ -24,7 +24,7 @@ export class AdjudicatorComponent implements OnInit {
       data => {
         this.headers = ['ID', 'Email', 'Name', 'Marital Status', 'Phone Number', 'Status'];
         let status = ["Approved","Rejected"];
-        let membersData = data.filter(datastatus => datastatus.status === "Pending");
+        let membersData = data.filter(datastatus => datastatus.status === "Review In-Progress");
         this.members = membersData;
         console.log("response received" + data);
       },
